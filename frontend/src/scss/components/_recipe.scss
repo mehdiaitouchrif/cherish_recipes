@@ -1,0 +1,39 @@
+.recipe {
+	padding: 0.25rem;
+	border-radius: 8px;
+	transition: 0.2s all;
+	min-height: 21rem;
+	cursor: pointer;
+	box-shadow: 0 10px 13px -7px rgba($color: #000000, $alpha: 0.2),
+		0 10px 13px -7px rgba($color: #000000, $alpha: 0.2);
+
+	&__image {
+		height: 13rem;
+		width: 100%;
+		transition: transform 0.3s;
+	}
+
+	&:hover &__image {
+		transform: scale(1.03);
+	}
+
+	&__name {
+		padding: 0 0.5rem;
+		min-height: 2rem;
+		margin: 0.5rem 0;
+		text-overflow: initial;
+	}
+
+	&__owner {
+		height: 2.5rem;
+		margin-top: 0.5rem;
+		display: flex;
+		align-items: center;
+		img {
+			width: 2.5rem;
+			height: 100%;
+			border-radius: 50%;
+			margin-right: 0.5rem;
+		}
+	}
+}

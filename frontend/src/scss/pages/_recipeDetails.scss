@@ -1,0 +1,90 @@
+.recipe-details {
+	overflow: hidden;
+	&__generic {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+		padding: 1rem;
+		border-bottom: 1px solid $light-gray;
+
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__information {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		margin: 1rem 0;
+
+		& > div {
+			text-align: center;
+
+			h2 {
+				font-size: 1.5rem;
+				font-weight: 300;
+			}
+
+			p {
+				font-weight: 300;
+				color: lighten($color: $dark-color, $amount: 30%);
+			}
+		}
+		& > div:not(:last-child) {
+			border-right: 0.1rem solid lighten($color: $dark-color, $amount: 20%);
+		}
+	}
+
+	&__images {
+		display: flex;
+		height: 100%;
+
+		@media (max-width: 500px) {
+			flex-direction: column;
+		}
+
+		&-active img {
+			height: 22rem;
+			width: 22rem;
+		}
+		&-select img {
+			width: 7rem;
+			height: 5.2rem;
+			opacity: 1;
+			transition: 0.5s all;
+			backface-visibility: hidden;
+			margin: 0 0 0 0.2rem;
+			border: 2px solid $light-color;
+
+			&:hover {
+				opacity: 0.8;
+				cursor: pointer;
+				border: 2px solid $primary-color;
+				border-radius: 4px;
+			}
+		}
+	}
+
+	&__owner {
+		display: flex;
+		align-items: center;
+		margin-top: 1rem;
+		img {
+			width: 3rem;
+			height: 3rem;
+			border-radius: 50%;
+			margin-right: 0.75rem;
+		}
+	}
+
+	&__depth {
+		@media (max-width: 500px) {
+			padding: 0 0.75rem;
+		}
+		font-size: 0.9rem;
+		line-height: 2;
+		i {
+			color: $yellow-color;
+		}
+	}
+}

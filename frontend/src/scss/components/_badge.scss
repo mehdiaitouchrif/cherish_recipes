@@ -1,0 +1,26 @@
+.badge {
+	padding: 0.35rem;
+	border: none;
+	border-radius: 2px;
+	min-width: 6rem;
+	margin: 0.5rem;
+	text-transform: uppercase;
+
+	font-size: 0.8rem;
+
+	&-primary {
+		@include set-background($primary-color);
+	}
+
+	&-info {
+		@include set-background($info-pure);
+	}
+
+	&-yellow {
+		@include set-background($yellow-color);
+	}
+
+	&-danger {
+		@include set-background($danger-pure);
+	}
+}

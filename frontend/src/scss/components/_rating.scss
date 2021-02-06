@@ -1,0 +1,24 @@
+.rating {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	font-size: 0.9rem;
+
+	span {
+		margin: 0 0.25rem;
+	}
+}
+
+.create-rating {
+	padding: 1rem;
+	border: 1px solid $light-gray;
+	border-radius: 4px;
+
+	box-shadow: 0 10px 13px -7px rgba($color: #000000, $alpha: 0.2),
+		0 10px 13px -7px rgba($color: #000000, $alpha: 0.2);
+
+	input,
+	textarea {
+		margin: 0.5rem 0;
+	}
+}

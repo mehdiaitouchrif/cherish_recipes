@@ -1,0 +1,37 @@
+.footer {
+	font-weight: 300;
+	font-size: 0.95rem;
+	background-image: linear-gradient(from $light-gray to $dark-color);
+	border-top: 1px solid $light-gray;
+	padding-top: 2rem;
+	&__links {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+		padding: 0 2rem 2rem 2rem;
+		border-bottom: 1px solid $light-gray;
+
+		@media (max-width: 768px) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		@media (max-width: 500px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		li {
+			font-weight: 300;
+			font-size: 0.95rem;
+			a {
+				font-size: inherit;
+				color: $dark-color;
+				&:hover {
+					color: lighten($color: #000000, $amount: 35%);
+				}
+			}
+		}
+	}
+	&__developer {
+		padding: 1rem 2rem;
+		font-size: 0.8rem;
+	}
+}

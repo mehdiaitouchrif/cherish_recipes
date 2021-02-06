@@ -1,0 +1,20 @@
+.alert {
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	border-radius: 4px;
+	@include set-background($light-gray);
+
+	&-success {
+		background-color: $success-color;
+		color: rgba(46, 124, 46, 0.815);
+	}
+
+	&-danger {
+		background-color: $danger-color;
+		color: $primary-color;
+	}
+
+	&-info {
+		@include set-background($info-pure);
+	}
+}

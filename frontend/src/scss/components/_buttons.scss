@@ -1,0 +1,34 @@
+.btn {
+	@include btn-shared;
+	padding: 0.4rem 0.75rem;
+	font-size: 0.9rem;
+
+	&-primary {
+		@include set-background($primary-color);
+		&:hover {
+			background-color: darken($color: $primary-color, $amount: 5%);
+		}
+	}
+
+	&-danger {
+		@include set-background($danger-pure);
+		&:hover {
+			background-color: darken($color: $danger-pure, $amount: 5%);
+		}
+	}
+
+	&-info {
+		@include set-background($info-pure);
+		&:hover {
+			background-color: darken($color: $info-pure, $amount: 5%);
+		}
+	}
+
+	&-gray {
+		background-color: darken($color: $light-color, $amount: 5%);
+	}
+	&-lg {
+		padding: 0.6rem 1rem;
+		font-size: 1rem;
+	}
+}

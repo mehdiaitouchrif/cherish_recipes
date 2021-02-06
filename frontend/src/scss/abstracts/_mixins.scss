@@ -1,0 +1,13 @@
+@mixin btn-shared {
+	display: inline-block;
+	overflow: hidden;
+	margin: 0.5rem 0.25rem;
+	border: none;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+@mixin set-background($color) {
+	background-color: $color;
+	color: set-text-color($color);
+}

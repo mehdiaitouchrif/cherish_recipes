@@ -1,0 +1,120 @@
+.profile {
+	&__header {
+		background: url('./images/profile-bg.jpeg') center center / cover;
+		padding: 2rem;
+		width: 100%;
+		position: relative;
+
+		display: flex;
+		justify-content: space-between;
+
+		height: 100%;
+		& > * {
+			color: $light-color;
+			z-index: 1;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			background-color: rgba($color: #000000, $alpha: 0.4);
+		}
+
+		img {
+			width: 8rem;
+			height: 8rem;
+			border-radius: 50%;
+			margin-right: 0.5rem;
+		}
+	}
+
+	&__image {
+		position: relative;
+
+		label {
+			position: absolute;
+			top: 3%;
+			right: 8%;
+			cursor: pointer;
+
+			i {
+				color: $primary-color;
+			}
+			&:hover {
+				color: darken($color: $primary-color, $amount: 5%);
+			}
+		}
+	}
+
+	&__confirmation {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__grids {
+		display: grid;
+		grid-template-columns: 25% auto;
+		gap: 2rem;
+		padding: 1rem 0;
+
+		@media (max-width: 500px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__aside {
+		@media (max-width: 500px) {
+			padding: 0 0.5rem;
+		}
+		div {
+			padding: 0.5rem;
+			font-size: 0.9rem;
+			margin: 0.2rem 0;
+			cursor: pointer;
+			border-left: 2px solid $light-color;
+			transition: 0.2s all;
+
+			&.active {
+				border-left: 2px solid $primary-color;
+				color: $primary-color;
+
+				background: rgba(0, 0, 0, 0)
+					linear-gradient(
+						270deg,
+						rgb(248, 225, 228) 0%,
+						rgba(251, 246, 247, 0) 92.47%
+					)
+					repeat scroll 0% 0%;
+			}
+		}
+	}
+
+	&__content {
+		@media (max-width: 500px) {
+			padding: 0 0.5rem;
+		}
+		&-nothing {
+			margin: 2rem 0 4rem 0;
+			img {
+				width: 8rem;
+				height: 8rem;
+			}
+		}
+
+		&-edit {
+			.password {
+				padding: 0.5rem 1rem;
+				background-color: #999;
+			}
+
+			.border-top {
+				border-top: 1px solid $light-gray;
+			}
+		}
+	}
+}

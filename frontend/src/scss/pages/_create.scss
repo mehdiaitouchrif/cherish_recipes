@@ -1,0 +1,48 @@
+.create {
+	box-shadow: 0 10px 13px -7px rgba($color: #000000, $alpha: 0.2),
+		0 10px 13px -7px rgba($color: #000000, $alpha: 0.2);
+	padding: 1rem;
+	background-color: lighten($color: $light-color, $amount: 1.5%);
+	margin-top: 1rem;
+	margin-bottom: 5rem;
+	&__groups {
+		text-transform: capitalize;
+		div {
+			display: flex;
+			justify-content: left;
+			flex-wrap: wrap;
+			& > * {
+				margin-right: 1.5rem;
+			}
+		}
+	}
+
+	ul {
+		background-color: #fff;
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 100%;
+			padding: 0.5rem 1rem;
+			border-bottom: 1px solid $light-color;
+		}
+	}
+
+	i {
+		cursor: pointer;
+	}
+
+	&__times {
+		display: flex;
+		& > * {
+			margin-right: 1rem;
+		}
+	}
+	&__selects {
+		margin: 1rem 0;
+		select {
+			margin: 0 1rem;
+		}
+	}
+}

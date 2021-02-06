@@ -1,0 +1,93 @@
+input,
+textarea {
+	padding: 0.5rem 1rem;
+	font-family: inherit;
+	font-size: inherit;
+	border-radius: 4px;
+	border: 2px solid $light-color;
+	margin-bottom: 1rem;
+	display: block;
+	width: 100%;
+	transition: 0.3s all;
+	&:focus {
+		outline: none;
+		border: 2px solid $primary-color;
+	}
+}
+
+input.search {
+	border-radius: 4rem;
+	padding: 0.75rem 2.5rem;
+}
+
+// Checkboxes
+.checkbox-container {
+	display: block;
+	position: relative;
+	padding-left: 30px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	font-size: 16px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: $light-gray;
+
+	&::after {
+		content: '';
+		position: absolute;
+		display: none;
+	}
+}
+
+.checkbox-container input:checked ~ .checkmark {
+	background-color: $primary-color;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.checkbox-container .checkmark:after {
+	left: 7px;
+	top: 4px;
+	width: 4px;
+	height: 8px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+// Upload file input
+input[type='file'] {
+	display: none;
+}
+.custom-file-upload {
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 0.7rem 1rem;
+	margin: 1rem 0;
+	background-color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+}

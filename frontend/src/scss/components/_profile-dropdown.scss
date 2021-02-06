@@ -1,0 +1,27 @@
+.user-logged {
+	display: flex;
+
+	&__outer {
+		display: flex;
+		align-items: center;
+		font-size: 0.9rem;
+
+		@include set-background(rgba($color: $dark-color, $alpha: 0.1));
+		padding: 0 1rem;
+
+		&--main {
+			background-color: transparent;
+			color: #333;
+		}
+
+		img {
+			width: 1.75rem;
+			height: 1.75rem;
+			margin-right: 0.5rem;
+		}
+
+		&:hover .profile-dropdown__inner {
+			visibility: visible;
+		}
+	}
+}

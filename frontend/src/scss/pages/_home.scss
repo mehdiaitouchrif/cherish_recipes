@@ -1,0 +1,127 @@
+.header {
+	height: 65vh;
+	background: url('./images/hero.jpg') no-repeat center top/cover;
+	position: relative;
+
+	// Push the background behind
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-color: rgba($color: #000000, $alpha: 0.35);
+	}
+
+	// Nav & Header styles
+	&__nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		ul {
+			display: flex;
+			z-index: 1;
+		}
+		padding: 0 2rem;
+		z-index: 1;
+
+		@media (max-width: 500px) {
+			padding: 0 0.5rem;
+		}
+	}
+	&__logo {
+		&--colored {
+			@include set-background($primary-color);
+		}
+		z-index: 1;
+
+		@media (max-width: 500px) {
+			font-size: 1rem;
+		}
+	}
+	&__search {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 50%;
+		color: set-text-color($dark-color);
+		z-index: 1;
+
+		@media (max-width: 500px) {
+			padding: 0 2rem;
+			width: 100%;
+		}
+
+		div {
+			position: relative;
+			i {
+				position: absolute;
+				top: 1rem;
+				left: 1rem;
+				z-index: 2;
+				color: $light-gray;
+				font-size: 1.15rem;
+			}
+		}
+	}
+}
+
+.cuisines {
+	padding: 2rem;
+	border-bottom: 1px solid $light-gray;
+	& > div {
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+	}
+}
+
+.groups {
+	background: url('./images/groups-bg.webp') bottom center/cover;
+	border-bottom: 1px solid $light-gray;
+	padding: 1rem 1rem 2rem 1rem;
+	display: grid;
+	grid-template-columns: 60% 40%;
+
+	@media (max-width: 900px) {
+		grid-template-columns: 1fr;
+		background: none;
+
+		h2 {
+			display: none;
+		}
+	}
+	& > div {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+}
+
+.recipes {
+	&:not(:last-child) {
+		border-bottom: 1px solid $light-gray;
+	}
+	padding: 1rem 1rem 2rem 1rem;
+	& > div {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+
+		@media (max-width: 1024px) {
+			grid-template-columns: repeat(3, 1fr);
+			padding: 1rem;
+		}
+
+		@media (max-width: 768px) {
+			grid-template-columns: repeat(2, 1fr);
+			padding: 2rem;
+		}
+		@media (max-width: 500px) {
+			grid-template-columns: 1fr;
+			padding: 2rem;
+		}
+	}
+}

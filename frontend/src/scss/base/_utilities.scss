@@ -1,0 +1,159 @@
+// Limit & Center
+.container {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 1rem;
+	&--tight {
+		max-width: 1000px;
+	}
+}
+
+// Typgraphy
+.uppercase {
+	text-transform: uppercase;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-muted {
+	color: darken($color: $light-color, $amount: 50%);
+}
+
+.rounded {
+	border-radius: 1rem;
+}
+
+.primary-heading {
+	font-size: 1.5rem;
+	font-weight: 300;
+	margin: 0.25rem 0;
+}
+
+.secondary-heading {
+	font-size: 2rem;
+	font-weight: 400;
+	margin: 0.25rem 0;
+}
+
+.tertiary-heading {
+	font-size: 1.25rem;
+	font-weight: 400;
+	margin: 0.25rem 0;
+}
+
+.lead {
+	font-size: 1.1rem;
+	font-size: 300;
+}
+
+.primary {
+	color: $primary-color;
+}
+
+.d-block {
+	display: block;
+	width: 100%;
+}
+
+.grid {
+	display: grid;
+	gap: 2rem;
+}
+
+.grid-2 {
+	grid-template-columns: repeat(2, 1fr);
+
+	@media (max-width: 500px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.grid-3 {
+	grid-template-columns: repeat(3, 1fr);
+	@media (max-width: 1024px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (max-width: 500px) {
+		grid-template-columns: 1fr;
+		padding: 0 1rem;
+	}
+}
+
+.grid-4 {
+	grid-template-columns: repeat(4, 1fr);
+
+	@media (max-width: 500px) {
+		grid-template-columns: 1fr;
+	}
+}
+// Margin & Padding
+.my-half {
+	margin: 0.5rem 0;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.flex-center {
+	justify-content: center;
+}
+
+.flex-disperse {
+	justify-content: space-between;
+}
+
+.flex-align {
+	align-items: center;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+.border-bottom {
+	border-bottom: 1px solid $light-gray;
+}
+$spaceamounts: (1, 2, 3, 4, 5);
+@each $space in $spaceamounts {
+	.m-#{$space} {
+		margin: #{$space}rem;
+	}
+	.my-#{$space} {
+		margin: #{$space}rem 0;
+	}
+	.mx-#{$space} {
+		margin: 0 #{$space}rem;
+	}
+	.mt-#{$space} {
+		margin-top: #{$space}rem;
+	}
+	.mb-#{$space} {
+		margin-bottom: #{$space}rem;
+	}
+	.ml-#{$space} {
+		margin-left: #{$space}rem;
+	}
+	.mr-#{$space} {
+		margin-right: #{$space}rem;
+	}
+	.p-#{$space} {
+		padding: #{$space}rem;
+	}
+	.py-#{$space} {
+		padding: #{$space}rem 0;
+	}
+	.pt-#{$space} {
+		padding-top: #{$space}rem;
+	}
+	.pb-#{$space} {
+		padding-bottom: #{$space}rem;
+	}
+	.pl-#{$space} {
+		padding-left: #{$space}rem;
+	}
+	.pr-#{$space} {
+		padding-right: #{$space}rem;
+	}
+}
