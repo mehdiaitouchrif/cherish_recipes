@@ -30,60 +30,70 @@ const Recipes = () => {
 	}, [dispatch])
 
 	return (
-		<section className='recipes' id='recipes'>
-			{recipesFromLs.length > 0 && (
-				<>
-					<h2 className='primary-heading my-1'>Recently viewed</h2>
+		<>
+			<section className='recipes' id='recipes'>
+				{recipesFromLs.length > 0 && (
+					<>
+						<h2 className='primary-heading my-1'>Recently viewed</h2>
 
-					<div className='grid grid-4 mb-2'>
-						{recipesFromLs.slice(0, 4).map((recipe) => (
-							<Recipe recipe={recipe} key={recipe._id} />
-						))}
-					</div>
-				</>
-			)}
+						<div className='grid grid-4 mb-2'>
+							{recipesFromLs.slice(0, 4).map((recipe) => (
+								<Recipe recipe={recipe} key={recipe._id} />
+							))}
+						</div>
+					</>
+				)}
 
-			{loading ? (
-				<>
-					<Skeleton type='title' />
-					<div className='grid grid-4'>
-						{arr.map((i) => (
-							<SkeletonRecipe key={i} />
-						))}
-					</div>
-				</>
-			) : error ? (
-				<Alert type='danger'>{error}</Alert>
-			) : (
-				<>
-					<h2 className='primary-heading my-1'>Latest recipes</h2>
-					<div className='mb-2'>
-						{recipes.map((recipe) => (
-							<Link
-								onClick={() => handleAddToViewed(recipe._id)}
-								key={recipe._id}
-								to={`/recipe/${recipe._id}`}
-							>
-								<div className='recipe'>
-									<img
-										className='recipe__image'
-										src={recipe.images[0]}
-										alt={recipe.name}
-									/>
-									<p className='recipe__name'>{recipe.name} </p>
-									<a className='recipe__owner'>
-										<img src={recipe.user.photo} alt={recipe.user.firstName} />
-										<p>
-											{recipe.user.firstName} {recipe.user.lastName}
-										</p>
-									</a>
-								</div>
-							</Link>
-						))}
-					</div>
-				</>
-			)}
-		</section>
+				{loading ? (
+					<>
+						<Skeleton type='title' />
+						<div className='grid grid-4'>
+							{arr.map((i) => (
+								<SkeletonRecipe key={i} />
+							))}
+						</div>
+					</>
+				) : error ? (
+					<Alert type='danger'>{error}</Alert>
+				) : (
+					<>
+						<h2 className='primary-heading my-1'>Latest recipes</h2>
+						<div className='mb-2'>
+							{recipes.slice(0, 8).map((recipe) => (
+								<Link
+									onClick={() => handleAddToViewed(recipe._id)}
+									key={recipe._id}
+									to={`/recipe/${recipe._id}`}
+								>
+									<div className='recipe'>
+										<img
+											className='recipe__image'
+											src={recipe.images[0]}
+											alt={recipe.name}
+										/>
+										<p className='recipe__name'>{recipe.name} </p>
+										<a className='recipe__owner'>
+											<img
+												src={recipe.user.photo}
+												alt={recipe.user.firstName}
+											/>
+											<p>
+												{recipe.user.firstName} {recipe.user.lastName}
+											</p>
+										</a>
+									</div>
+								</Link>
+							))}
+						</div>
+					</>
+				)}
+			</section>
+			<div className='text-center'>
+				<Link to='/search' className='btn btn-lg btn-info rounded'>
+					See more
+				</Link>
+			</div>
+		</>
 	)
 }
 
