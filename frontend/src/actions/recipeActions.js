@@ -49,14 +49,14 @@ export const listFiltredRecipes = (
 	term = '',
 	rating = 4.5,
 	page = '',
-	cuisine = ' ',
+	cuisine = '',
 	sort = 'name'
 ) => async (dispatch) => {
 	try {
 		dispatch({ type: RECIPE_FILTERED_REQUEST })
 
 		const { data } = await axios.get(
-			`/api/v1/recipes?search=${term}&averageRating[gte]=${rating}&page=${page}&sort=${sort}`
+			`/api/v1/recipes?search=${term}&averageRating[gte]=${rating}&page=${page}&sort=${sort}&cuisine=${cuisine}`
 		)
 
 		dispatch({
@@ -129,12 +129,6 @@ export const createRecipe = (recipe) => async (dispatch, getState) => {
 		const {
 			userLogin: { userInfo },
 		} = getState()
-
-		// Issue: update recipes when create new one ; DONE
-		// Update recipe
-		// User photo uplaod
-		// CRUD reviews
-		// Search Page; </filters
 
 		const config = {
 			headers: {
