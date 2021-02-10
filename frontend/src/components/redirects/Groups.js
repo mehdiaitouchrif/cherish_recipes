@@ -24,15 +24,15 @@ const Groups = () => {
 	]
 	return (
 		<section className='groups' id='groups'>
-			<div class='mb-2 mt-2'>
+			<div className='mb-2 mt-2'>
 				{groups.map((group) => (
-					<div className='group'>
+					<div key={group + Math.random()} className='group'>
 						<img src={group.img} alt={group.name} />
 						<p>{group.name}</p>
 					</div>
 				))}
 			</div>
-			<h2 class='primary-heading mt-2'>Find your favorite food groups</h2>
+			<h2 className='primary-heading mt-2'>Find your favorite food groups</h2>
 		</section>
 	)
 }

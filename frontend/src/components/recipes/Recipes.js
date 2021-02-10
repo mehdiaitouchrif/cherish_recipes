@@ -72,7 +72,7 @@ const Recipes = () => {
 											alt={recipe.name}
 										/>
 										<p className='recipe__name'>{recipe.name} </p>
-										<a className='recipe__owner'>
+										<div className='recipe__owner'>
 											<img
 												src={recipe.user.photo}
 												alt={recipe.user.firstName}
@@ -80,7 +80,7 @@ const Recipes = () => {
 											<p>
 												{recipe.user.firstName} {recipe.user.lastName}
 											</p>
-										</a>
+										</div>
 									</div>
 								</Link>
 							))}

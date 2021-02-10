@@ -40,7 +40,7 @@ const Cuisines = () => {
 			<h2 className='primary-heading'>Go for your favorite cuisine</h2>
 			<div className='mb-2'>
 				{cuisines.map((cuisine) => (
-					<div className='cuisine'>
+					<div key={cuisine + Math.random()} className='cuisine'>
 						<Link
 							className='cuisine__container'
 							to={`/search/ /${cuisine.name}/ /`}

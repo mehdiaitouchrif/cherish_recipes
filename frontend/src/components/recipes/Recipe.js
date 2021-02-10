@@ -37,7 +37,7 @@ const Recipe = ({ recipe, user }) => {
 					alt={recipe.name}
 				/>
 				<p className='recipe__name'>{recipe.name} </p>
-				<a className='recipe__owner'>
+				<div className='recipe__owner'>
 					<img
 						src={user ? user.photo : recipe.user.photo}
 						alt={user ? user.firstName : recipe.user.firstName}
@@ -46,7 +46,7 @@ const Recipe = ({ recipe, user }) => {
 						{user ? user.firstName : recipe.user.firstName}{' '}
 						{user ? user.lastName : recipe.user.lastName}
 					</p>
-				</a>
+				</div>
 			</Link>
 			{showButtons && (
 				<>

@@ -1,15 +1,15 @@
 const Footer = () => {
 	return (
-		<footer id='footer' class='footer'>
-			<div class='container'>
-				<div class='footer__links'>
-					<h3 class='logo'>
-						Cherish <span class='header__logo--colored'>Recipes</span>
+		<footer id='footer' className='footer'>
+			<div className='container'>
+				<div className='footer__links'>
+					<h3 className='logo'>
+						Cherish <span className='header__logo--colored'>Recipes</span>
 						{'>'}{' '}
 					</h3>
 					<ul>
 						<li>
-							<strong class='uppercase'>Company</strong>
+							<strong className='uppercase'>Company</strong>
 						</li>
 						<li>
 							<a href='/'>Who we are</a>
@@ -26,7 +26,7 @@ const Footer = () => {
 					</ul>
 					<ul>
 						<li>
-							<strong class='uppercase'>For Foodies</strong>
+							<strong className='uppercase'>For Foodies</strong>
 						</li>
 						<li>
 							<a href='/'>Community</a>
@@ -43,7 +43,7 @@ const Footer = () => {
 					</ul>
 					<ul>
 						<li>
-							<strong class='uppercase'>For You</strong>
+							<strong className='uppercase'>For You</strong>
 						</li>
 						<li>
 							<a href='/'>Privacy</a>
@@ -56,7 +56,7 @@ const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				<div class='footer__developer'>
+				<div className='footer__developer'>
 					<p>
 						CherishRecipes is a web application developed by{' '}
 						<a href='mailto:mehdi.aitouchrif1@gmail.com'>

@@ -209,9 +209,9 @@ const Profile = ({ match }) => {
 									{user && user.firstName} {user && user.lastName}{' '}
 								</p>
 							</div>
-							<label class='profile-upload'>
+							<label className='profile-upload'>
 								<input type='file' onChange={uploadPhoto} />
-								<i class='fas fa-camera fa-2x'></i>
+								<i className='fas fa-camera fa-2x'></i>
 							</label>
 							{fileUploadError && (
 								<Alert type='danger'>{fileUploadError} </Alert>
@@ -251,27 +251,27 @@ const Profile = ({ match }) => {
 							<p className='lead uppercase text-muted'>Activity</p>
 							<div
 								onClick={() => setActive('recipes')}
-								className={active === 'recipes' && 'active'}
+								className={active === 'recipes' ? 'active' : undefined}
 							>
 								Recipes
 							</div>
 							<div
 								onClick={() => setActive('reviews')}
-								className={active === 'reviews' && 'active'}
+								className={active === 'reviews' ? 'active' : undefined}
 							>
 								Reviews
 							</div>
 
 							<div
 								onClick={() => setActive('create')}
-								className={active === 'create' && 'active'}
+								className={active === 'create' ? 'active' : undefined}
 							>
 								Create Recipe
 							</div>
 
 							<div
 								onClick={() => setActive('edit')}
-								className={active === 'edit' && 'active'}
+								className={active === 'edit' ? 'active' : undefined}
 							>
 								Edit Profile
 							</div>

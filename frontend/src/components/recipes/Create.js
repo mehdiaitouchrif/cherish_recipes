@@ -233,7 +233,7 @@ const Create = ({ recipe }) => {
 					<p className='lead my-half'>Select groups</p>
 					<div>
 						{groupsArr.map((gr) => (
-							<label className='checkbox-container'>
+							<label key={gr + Math.random()} className='checkbox-container'>
 								{gr}
 								<input onChange={handleCheckbox} type='checkbox' value={gr} />
 								<span className='checkmark'></span>
@@ -244,7 +244,7 @@ const Create = ({ recipe }) => {
 				{uploadErr && <Alert type='danger'>Upload Error </Alert>}
 				{uploading && <Loader />}
 				<p className='lead mt-1'>Add images</p>
-				<label class='custom-file-upload'>
+				<label className='custom-file-upload'>
 					<input type='file' multiple onChange={uploadRecipeImages} />
 					<i className='fa fa-images'></i>
 					{'  '} Import
@@ -253,7 +253,7 @@ const Create = ({ recipe }) => {
 					{images.length > 0 &&
 						!signedRequestLoading &&
 						images.map((image, index) => (
-							<div className='create__image'>
+							<div key={index + Math.random()} className='create__image'>
 								<img src={image} key={image} alt={image} />
 								<i
 									onClick={() =>
@@ -283,7 +283,7 @@ const Create = ({ recipe }) => {
 					</form>
 					<ul className='mb-3'>
 						{steps.map((step, index) => (
-							<div>
+							<div key={step + index}>
 								<li key={index}>
 									<i className='fas fa-dot-circle'></i> {step}{' '}
 								</li>
@@ -307,7 +307,7 @@ const Create = ({ recipe }) => {
 					</form>
 					<ul>
 						{ingredients.map((ing, index) => (
-							<div>
+							<div key={ing + index}>
 								<li key={index}>
 									<i className='fas fa-dot-circle'></i> {ing}{' '}
 								</li>
