@@ -21,9 +21,6 @@ import {
 	RECIPE_FILTRED_SUCCESS,
 	RECIPE_FILTRED_FAIL,
 	ADD_TO_VIEWED,
-	GET_SIGNED_S3_URL_SUCCESS,
-	GET_SIGNED_S3_URL_REQUEST,
-	GET_SIGNED_S3_URL_FAIL,
 } from '../constants/recipeConstants'
 import axios from 'axios'
 
