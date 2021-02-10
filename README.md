@@ -4,7 +4,7 @@
 
 This is a recipe web application built with MERN stack for cooks to share their recipes and expertise with everybody on the world.
 
-![Project Preview](https://drive.google.com/file/d/16teie0BvWJjo0t6kqAXRr2STlJQ6Oe3Q/view)
+![Project Preview](https://user-images.githubusercontent.com/74450685/107570579-0415f800-6bea-11eb-8170-7e20c58bd02a.jpg)
 
 # Quick Start 🚀
 
