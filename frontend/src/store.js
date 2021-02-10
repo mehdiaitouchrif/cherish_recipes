@@ -35,6 +35,11 @@ import {
 	accountDeleteReducer,
 } from './reducers/authReducers'
 
+import {
+	fileUploadReducer,
+	signedRequestReducer,
+} from './reducers/uploadReducers'
+
 const reducer = combineReducers({
 	recipeList: recipeListReducer,
 	recipeFiltred: recipeFiltredReducer,
@@ -61,6 +66,8 @@ const reducer = combineReducers({
 	reviewUpdate: reviewUpdateReducer,
 	reviewDelete: reviewDeleteReducer,
 	singleReview: singleReviewReducer,
+	fileUpload: fileUploadReducer,
+	signedRequest: signedRequestReducer,
 })
 
 const userInfoLS = localStorage.getItem('userInfo')

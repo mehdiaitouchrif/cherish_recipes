@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
 import { createRecipe, updateRecipe } from '../../actions/recipeActions'
 import Alert from '../complements/Alert'
 import Loader from '../complements/Loader'
 import { useHistory } from 'react-router-dom'
 import { RECIPE_UPDATE_RESET } from '../../constants/recipeConstants'
+import { getSignedRequest } from '../../actions/uploadActions'
 
 const Create = ({ recipe }) => {
 	// Recipe form fields
@@ -85,40 +85,20 @@ const Create = ({ recipe }) => {
 
 	const dispatch = useDispatch()
 
-	// Upload images
-	const uploadImgaes = async (e) => {
-		const filesArr = []
-		const files = Object.keys(e.target.files).map((key) =>
-			filesArr.push(e.target.files[key])
+	// Upload Profile photo
+	const signedRequest = useSelector((state) => state.signedRequest)
+	const {
+		loading: signedRequestLoading,
+		error: signedRequestErr,
+	} = signedRequest
+
+	const fileUpload = useSelector((state) => state.fileUpload)
+	const { data: fileUrl, resource, error: fileUploadError } = fileUpload
+
+	const uploadRecipeImages = (e) => {
+		Object.keys(e.target.files).map((key) =>
+			dispatch(getSignedRequest(e.target.files[key], 'recipe'))
 		)
-
-		const formData = new FormData()
-		const uploaders = filesArr.map((file) => {
-			return formData.append('recipeImages', file)
-		})
-		setUploading(true)
-
-		try {
-			const config = {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
-			}
-
-			const { data } = await axios.post(
-				'/api/v1/upload/recipe',
-				formData,
-				config
-			)
-			const dataCopy = [...data]
-			const newData = dataCopy.map((img) => img.toString())
-			setImages(data)
-			setUploading(false)
-		} catch (error) {
-			console.error(error)
-			setUploading(false)
-			setUploadErr(true)
-		}
 	}
 
 	// Create a new recipe
@@ -147,9 +127,6 @@ const Create = ({ recipe }) => {
 
 	const history = useHistory()
 	useEffect(() => {
-		// if (!infoLoading && !userInfo) {
-		// 	history.push('/')
-		// }
 		if (success) {
 			setShowMessage(true)
 
@@ -176,7 +153,11 @@ const Create = ({ recipe }) => {
 			history.push(`/profile/${recipe.user}`)
 			dispatch({ type: RECIPE_UPDATE_RESET })
 		}
-	}, [dispatch, userInfo, success, recipe, history, updateSuccess])
+
+		if (fileUrl && resource === 'recipe') {
+			setImages([...images, fileUrl])
+		}
+	}, [dispatch, userInfo, success, recipe, history, updateSuccess, fileUrl])
 
 	return (
 		<div className='create'>
@@ -264,10 +245,28 @@ const Create = ({ recipe }) => {
 				{uploading && <Loader />}
 				<p className='lead mt-1'>Add images</p>
 				<label class='custom-file-upload'>
-					<input type='file' multiple onChange={uploadImgaes} />
+					<input type='file' multiple onChange={uploadRecipeImages} />
 					<i className='fa fa-images'></i>
 					{'  '} Import
 				</label>
+				<div className='create__images'>
+					{images.length > 0 &&
+						!signedRequestLoading &&
+						images.map((image, index) => (
+							<div className='create__image'>
+								<img src={image} key={image} alt={image} />
+								<i
+									onClick={() =>
+										setImages(images.filter((img, idx) => idx !== index))
+									}
+									className='fas fa-times'
+								></i>
+							</div>
+						))}
+					{signedRequestErr && <Alert type='danger'>{signedRequestErr} </Alert>}
+					{fileUploadError && <Alert type='danger'>{fileUploadError} </Alert>}
+					{signedRequestLoading && <Loader type='medium' />}
+				</div>
 			</form>
 
 			{/* Ingredients & Steps Forms */}

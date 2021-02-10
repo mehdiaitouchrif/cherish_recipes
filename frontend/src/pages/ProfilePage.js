@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 import {
 	getUserDetails,
 	updateDetails,
@@ -12,6 +11,7 @@ import {
 import { listUserRecipes } from '../actions/recipeActions'
 import { listUserReviews } from '../actions/reviewActions'
 import { UPDATE_PASSWORD_RESET } from '../constants/authConstants'
+import { getSignedRequest } from '../actions/uploadActions'
 import Container from '../components/layout/Container'
 import MainHeader from '../components/layout/MainHeader'
 import Alert from '../components/complements/Alert'
@@ -39,10 +39,6 @@ const Profile = ({ match }) => {
 	const [newPassword, setNewPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [showAlert, setShowAlert] = useState(false)
-
-	// For photo upload
-	const [uploading, setUploading] = useState(false)
-	const [uploadErr, setUploadErr] = useState(false)
 
 	// Brining user info & details
 	const userLogin = useSelector((state) => state.userLogin)
@@ -103,34 +99,19 @@ const Profile = ({ match }) => {
 	} = userConfirmEmail
 
 	// Upload Profile photo
-	const uploadPhoto = async (e) => {
+	const signedRequest = useSelector((state) => state.signedRequest)
+	const {
+		loading: signedRequestLoading,
+		error: signedRequestErr,
+	} = signedRequest
+
+	const fileUpload = useSelector((state) => state.fileUpload)
+	const { data: fileUrl, resource, error: fileUploadError } = fileUpload
+
+	// Update & Upload User photo
+	const uploadPhoto = (e) => {
 		const file = e.target.files[0]
-
-		const formData = new FormData()
-		formData.append('profilePhoto', file)
-
-		setUploading(true)
-
-		try {
-			const config = {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
-			}
-
-			const { data } = await axios.post(
-				'/api/v1/upload/profile',
-				formData,
-				config
-			)
-			setUploading(false)
-			dispatch(updateDetails({ photo: data }))
-			window.location.reload()
-		} catch (error) {
-			console.error(error)
-			setUploading(false)
-			setUploadErr(true)
-		}
+		dispatch(getSignedRequest(file, 'profile'))
 	}
 
 	// Delete  account
@@ -186,6 +167,11 @@ const Profile = ({ match }) => {
 				if (confirmEmailSuccess) {
 					dispatch(getUserDetails())
 				}
+
+				if (fileUrl && resource === 'profile') {
+					dispatch(updateDetails({ photo: fileUrl }))
+					window.location.reload()
+				}
 			}
 		}
 	}, [
@@ -197,6 +183,7 @@ const Profile = ({ match }) => {
 		active,
 		deleteAccountSuccess,
 		confirmEmailSuccess,
+		fileUrl,
 	])
 
 	const arr = [1, 2, 3]
@@ -226,6 +213,13 @@ const Profile = ({ match }) => {
 								<input type='file' onChange={uploadPhoto} />
 								<i class='fas fa-camera fa-2x'></i>
 							</label>
+							{fileUploadError && (
+								<Alert type='danger'>{fileUploadError} </Alert>
+							)}
+							{signedRequestLoading && <Loader type='medium' />}
+							{signedRequestErr && (
+								<Alert type='danger'>{signedRequestErr}</Alert>
+							)}
 						</div>
 
 						<div className='profile__confirmation'>
@@ -378,7 +372,7 @@ const Profile = ({ match }) => {
 									</div>
 								</div>
 							) : active === 'recipes' ? (
-								recipes.length > 0 && user ? (
+								recipes && recipes.length > 0 && user ? (
 									<div className='grid grid-3 my-1'>
 										{recipes.map((recipe) => (
 											<Recipe key={recipe._id} recipe={recipe} user={user} />
