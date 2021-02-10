@@ -2,6 +2,8 @@ import express from 'express'
 const router = express.Router({ mergeParams: true })
 import aws from 'aws-sdk'
 
+aws.config.region = process.env.AWS_REGION
+
 // GET SIGNED S3 URL
 const SignS3 = (req, res) => {
 	const s3 = new aws.S3()
