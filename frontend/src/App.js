@@ -16,10 +16,7 @@ const App = () => (
 		<Route path='/signup' component={SignupPage} />
 		<Route exact path='/recipe/:id' component={RecipePage} />
 		<Route path='/recipe/:recipeId/edit' component={EditRecipePage} />
-		<Route
-			path='/search/:term?/:cuisine?/:rating?/:page?'
-			component={SearchPage}
-		/>
+		<Route path='/search/:term?/:page?' component={SearchPage} />
 		<Route path='/profile/:username/:recipeId?' component={ProfilePage} />
 		<Route path='/confirmemail/:token' component={ConfirmEmail} />
 		<Footer />

@@ -11,7 +11,7 @@ const HomeHeader = () => {
 	const searchHandler = (e) => {
 		e.preventDefault()
 		if (term.trim()) {
-			history.push(`/search/${term}`)
+			history.push(`/search/${term}/`)
 		} else {
 			history.push('/')
 		}

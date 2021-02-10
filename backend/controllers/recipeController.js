@@ -48,7 +48,7 @@ export const getRecipes = asyncHandler(async (req, res) => {
 
 	// 5. Pagination
 	const pageNumber = Number(req.query.page) || 1
-	const pageSize = Number(req.query.limit) || 20
+	const pageSize = Number(req.query.limit) || 16
 	const skip = (pageNumber - 1) * pageSize
 	const count = await Recipe.countDocuments({ ...search })
 

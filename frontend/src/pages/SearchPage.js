@@ -8,7 +8,7 @@ import Paginate from '../components/complements/Paginate'
 import SkeletonRecipe from '../components/skeletons/SkeletonRecipe'
 
 const SearchPage = ({ match }) => {
-	const { term, cuisine } = match.params
+	const term = match.params.term
 
 	const pageNumber = match.params.page || 1
 	// Bring in recipes
@@ -22,10 +22,7 @@ const SearchPage = ({ match }) => {
 	} = recipeFiltred
 
 	// Manage active filters
-	const [activeRating, setActiveRating] = useState(' ')
 	const [activeTerm, setActiveTerm] = useState(term)
-	const [activeCuisine, setActiveCuisine] = useState(cuisine)
-	const [sortByNewest, setSortByNewest] = useState(true)
 
 	const [showSearchBox, setShowSearchBox] = useState(false)
 	const [termVal, setTermVal] = useState('')
@@ -37,29 +34,14 @@ const SearchPage = ({ match }) => {
 
 	const dispatch = useDispatch()
 	useEffect(() => {
-		dispatch(
-			listFiltredRecipes(
-				activeTerm,
-				activeRating,
-				pageNumber,
-				activeCuisine,
-				sortByNewest ? 'name' : 'createdAt'
-			)
-		)
+		dispatch(listFiltredRecipes(activeTerm, pageNumber))
 
 		window.addEventListener('click', (e) => {
 			if (e.target === document.querySelector('.input-box')) {
 				setShowSearchBox(false)
 			}
 		})
-	}, [
-		dispatch,
-		activeTerm,
-		activeRating,
-		activeCuisine,
-		sortByNewest,
-		pageNumber,
-	])
+	}, [dispatch, activeTerm, pageNumber])
 
 	const arr = [1, 2, 3, 4, 5, 6, 7, 8]
 
@@ -91,74 +73,9 @@ const SearchPage = ({ match }) => {
 					<button className='filter'>
 						<i className='fas fa-filter filterIcon'></i> Filters
 					</button>
-					{/* Sorting by date */}
-					<button
-						onClick={() => setSortByNewest(!sortByNewest)}
-						className={`filter ${sortByNewest && 'active'}`}
-					>
-						Newest
-						{sortByNewest && <i className='fas fa-times'></i>}
-					</button>
 
-					<button
-						onClick={() => setSortByNewest(!setSortByNewest)}
-						className={`filter ${!sortByNewest && 'active'}`}
-					>
-						Oldest
-						{!sortByNewest && <i className='fas fa-times'></i>}
-					</button>
-
-					{/* Sorting by rating */}
-
-					<button
-						onClick={() => setActiveRating(4.5)}
-						// When click this one set Active rating to a value
-						className={`filter ${activeRating === 4.5}`}
-					>
-						Rating +4.5
-					</button>
-					<button
-						onClick={() => setActiveRating(4)}
-						// When click this one set Active rating to a value
-						className={`filter ${activeRating === 4}`}
-					>
-						Rating +4
-					</button>
-					<button
-						onClick={() => setActiveRating(3)}
-						// When click this one set Active rating to a value
-						className={`filter ${activeRating === 3}`}
-					>
-						Rating +3
-					</button>
-
-					{activeRating !== ' ' && (
-						<button
-							onClick={() => setActiveRating(' ')}
-							className={`filter active`}
-						>
-							Rating {activeRating}
-							<i className='fas fa-times'></i>
-						</button>
-					)}
-
-					{/* Sorting by cuisines & groups */}
-					<button className='filter '>Cuisines</button>
-
-					{activeCuisine !== ' ' && (
-						<button
-							onClick={() => setActiveCuisine(' ')}
-							className='filter active'
-						>
-							{activeCuisine} <i className='fas fa-times'></i>
-						</button>
-					)}
-
-					{activeTerm !== ' ' && (
-						<button
-							onClick={() => setActiveTerm(' ')}
-							className='filter active'
-						>
+					{activeTerm && activeTerm.trim() !== '' && (
+						<button onClick={() => setActiveTerm('')} className='filter active'>
 							{activeTerm} <i className='fas fa-times'></i>
 						</button>
 					)}
@@ -195,13 +112,7 @@ const SearchPage = ({ match }) => {
 							</div>
 						)}
 					</div>
-					<Paginate
-						pages={pages}
-						page={page}
-						term={activeTerm}
-						rating={activeRating}
-						cuisine={activeCuisine}
-					/>
+					<Paginate pages={pages} page={page} term={term} />
 				</div>
 			</div>
 		</>

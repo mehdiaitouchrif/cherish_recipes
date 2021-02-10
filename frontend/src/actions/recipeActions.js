@@ -48,18 +48,14 @@ export const listRecipes = () => async (dispatch) => {
 	}
 }
 
-export const listFiltredRecipes = (
-	term = '',
-	rating = 4.5,
-	page = '',
-	cuisine = '',
-	sort = 'name'
-) => async (dispatch) => {
+export const listFiltredRecipes = (term = '', page = '') => async (
+	dispatch
+) => {
 	try {
 		dispatch({ type: RECIPE_FILTERED_REQUEST })
 
 		const { data } = await axios.get(
-			`/api/v1/recipes?search=${term}&averageRating[gte]=${rating}&page=${page}&sort=${sort}&cuisine=${cuisine}`
+			`/api/v1/recipes?search=${term}&page=${page}`
 		)
 
 		dispatch({
