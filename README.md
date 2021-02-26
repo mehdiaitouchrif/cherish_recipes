@@ -2,7 +2,7 @@
 
 > Recipes for everybody. Let's cook!
 
-This is a recipe web application built with MERN stack for cooks to share their recipes and expertise with everybody on the world.
+This is a recipe web application built with MERN stack for cooks to share their recipes and expertise with everybody in the world.
 
 ![Project Preview](https://user-images.githubusercontent.com/74450685/107570579-0415f800-6bea-11eb-8170-7e20c58bd02a.jpg)
 
