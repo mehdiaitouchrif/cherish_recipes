@@ -119,7 +119,7 @@ const Login = () => {
 						/>
 						<input
 							type='password'
-							placeholder='Confirm enw password'
+							placeholder='Confirm new password'
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
 						/>
